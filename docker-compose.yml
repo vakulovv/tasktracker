@@ -1,0 +1,19 @@
+version: '3.9'
+
+services:
+  server:
+    container_name: tasktracker
+    image: tasktracker
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+      args:
+        SERVER_PORT: ${SERVER_PORT}
+    restart: always
+    ports:
+      - '${SERVER_PORT}:${SERVER_PORT}'
+    environment:
+      SERVER_PORT: ${SERVER_PORT}
+    env_file:
+      - .env
+
